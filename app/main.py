@@ -1,7 +1,7 @@
 from fastapi import FastAPI
-from sqlmodel import select
+from sqlmodel import Session, select
 
-from app.db import get_session, init_db
+from app.db import engine, init_db
 from app.models.service import Service
 from app.models.tenant import Tenant
 from app.models.user import User
@@ -9,15 +9,13 @@ from app.routes import appointments, availability, services
 
 app = FastAPI(title="Appointment App Backend")
 
-
 @app.on_event("startup")
 def on_startup() -> None:
     init_db()
     seed_initial_data()
 
-
 def seed_initial_data() -> None:
-    with get_session() as session:
+    with Session(engine) as session:
         tenant = session.exec(select(Tenant).where(Tenant.id == 1)).first()
         if not tenant:
             tenant = Tenant(id=1, name="Default Tenant")
@@ -37,11 +35,9 @@ def seed_initial_data() -> None:
 
         session.commit()
 
-
 app.include_router(services.router)
 app.include_router(appointments.router)
 app.include_router(availability.router)
-
 
 @app.get("/", tags=["health"])
 def read_root() -> dict[str, str]:
