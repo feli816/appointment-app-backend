@@ -5,6 +5,7 @@ from app.db import engine, init_db
 from app.models.service import Service
 from app.models.tenant import Tenant
 from app.models.user import User
+from app.routes import auth
 from app.routes import appointments, availability, services
 
 app = FastAPI(title="Appointment App Backend")
@@ -38,6 +39,7 @@ def seed_initial_data() -> None:
 app.include_router(services.router)
 app.include_router(appointments.router)
 app.include_router(availability.router)
+app.include_router(auth.router)
 
 @app.get("/", tags=["health"])
 def read_root() -> dict[str, str]:
