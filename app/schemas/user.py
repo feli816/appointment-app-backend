@@ -1,5 +1,8 @@
 from typing import Optional
+
 from sqlmodel import SQLModel
+
+from app.models.user import UserRole
 
 
 class UserRead(SQLModel):
@@ -8,6 +11,7 @@ class UserRead(SQLModel):
     name: str
     email: Optional[str] = None
     phone: Optional[str] = None
+    role: UserRole
 
 
 class UserCreate(SQLModel):
@@ -15,3 +19,4 @@ class UserCreate(SQLModel):
     name: str
     email: Optional[str] = None
     phone: Optional[str] = None
+    role: UserRole = UserRole.student
