@@ -1,0 +1,310 @@
+:root {
+  --bg: #f4efe7;
+  --paper: #fffaf2;
+  --panel: rgba(255, 250, 242, 0.88);
+  --line: rgba(48, 36, 27, 0.12);
+  --text: #2f241d;
+  --muted: #6c5a4d;
+  --accent: #e4682a;
+  --accent-strong: #b84a16;
+  --accent-soft: rgba(228, 104, 42, 0.12);
+  --success: #2d8a56;
+  --warning: #d08122;
+  --danger: #bb3f38;
+  --shadow: 0 20px 50px rgba(69, 41, 21, 0.12);
+  --radius: 24px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(228, 104, 42, 0.14), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(45, 138, 86, 0.12), transparent 24%),
+    linear-gradient(135deg, #efe5d9, #f7f1e8 42%, #efe6db);
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 24px;
+  padding: 24px;
+}
+
+.sidebar,
+.phone-frame {
+  backdrop-filter: blur(16px);
+  background: rgba(255, 250, 242, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+}
+
+.sidebar {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.phone-frame {
+  padding: 24px;
+}
+
+.brand h1,
+.topbar h2,
+.hero-card h3,
+.panel h2,
+.panel h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.brand-copy,
+.eyebrow,
+.muted,
+.meta,
+.small {
+  color: var(--muted);
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  margin: 0 0 6px;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px;
+}
+
+.stack {
+  display: grid;
+  gap: 12px;
+}
+
+.role-switcher,
+.tab-bar,
+.actions-row,
+.list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 16px;
+  font: inherit;
+  cursor: pointer;
+  transition: transform 120ms ease, opacity 120ms ease, background 120ms ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+.role-button,
+.tab-button,
+.ghost-button,
+.secondary-button {
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.role-button.active,
+.tab-button.active,
+.primary-button {
+  background: var(--accent);
+  color: white;
+}
+
+.ghost-button {
+  background: transparent;
+}
+
+.topbar,
+.hero-card,
+.content-grid {
+  margin-bottom: 18px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.hero-card {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 18px;
+  padding: 20px;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(47, 36, 29, 0.94), rgba(96, 53, 23, 0.94)),
+    linear-gradient(180deg, rgba(228, 104, 42, 0.9), rgba(184, 74, 22, 0.9));
+  color: white;
+}
+
+.hero-card .eyebrow,
+.hero-card p {
+  color: rgba(255, 244, 235, 0.82);
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.9fr);
+  gap: 18px;
+}
+
+.main-panel,
+.side-panel {
+  min-height: 580px;
+}
+
+.stats-grid,
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+}
+
+.stat-card,
+.info-card,
+.message-card,
+.booking-card,
+.slot-card,
+.progress-card,
+.notification-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 16px;
+}
+
+.stat-label,
+.message-meta,
+.booking-meta,
+.slot-meta {
+  display: block;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.section-header h3,
+.card-title {
+  margin: 0;
+}
+
+.info-card strong,
+.booking-card strong,
+.slot-card strong,
+.message-card strong,
+.notification-card strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.85rem;
+}
+
+.pill.success {
+  background: rgba(45, 138, 86, 0.12);
+  color: var(--success);
+}
+
+.pill.warning {
+  background: rgba(208, 129, 34, 0.12);
+  color: var(--warning);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(47, 36, 29, 0.08);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), #f0a456);
+}
+
+.empty-state {
+  padding: 20px;
+  text-align: center;
+  color: var(--muted);
+  border: 1px dashed var(--line);
+  border-radius: 18px;
+}
+
+.school-summary p,
+.notification-card p,
+.message-card p,
+.booking-card p,
+.slot-card p,
+.info-card p,
+.progress-card p {
+  margin: 0;
+}
+
+@media (max-width: 1080px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .content-grid,
+  .hero-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .app-shell,
+  .sidebar,
+  .phone-frame {
+    padding: 16px;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

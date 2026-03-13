@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DriveSchool SaaS MVP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <p class="eyebrow">SaaS B2B</p>
+          <h1>DriveSchool</h1>
+          <p class="brand-copy">Pilotage d'auto-ecole, reservations et suivi mobile.</p>
+        </div>
+
+        <section class="panel">
+          <h2>Connexion rapide</h2>
+          <div id="role-switcher" class="role-switcher"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Ecole</h2>
+          <div id="school-summary" class="school-summary"></div>
+        </section>
+
+        <section class="panel">
+          <h2>Notifications</h2>
+          <div id="notification-list" class="stack"></div>
+        </section>
+      </aside>
+
+      <main class="phone-frame">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Prototype fonctionnel</p>
+            <h2 id="screen-title">Tableau de bord</h2>
+          </div>
+          <button id="urgent-booking-button" class="ghost-button">Disponibilite immediate</button>
+        </header>
+
+        <section class="hero-card">
+          <div>
+            <p class="eyebrow" id="hero-eyebrow">Bienvenue</p>
+            <h3 id="hero-title">Optimiser les lecons en quelques tapes</h3>
+          </div>
+          <p id="hero-copy">
+            Centralisez les eleves, les moniteurs, les reservations et la communication dans une seule application.
+          </p>
+        </section>
+
+        <nav id="tab-bar" class="tab-bar"></nav>
+
+        <section class="content-grid">
+          <section class="panel main-panel">
+            <div id="main-content"></div>
+          </section>
+          <section class="panel side-panel">
+            <div id="context-content"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
