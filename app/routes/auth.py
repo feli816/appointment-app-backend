@@ -1,18 +1,16 @@
-from fastapi import APIRouter, Depends, HTTPException, status
-from sqlmodel import Session, select
 from datetime import datetime, timedelta
 import random
 
+from fastapi import APIRouter, Depends, HTTPException
+from sqlmodel import Session, select
+
+from app.core.security import encode_token
 from app.db import get_session
-from app.models.user import User
 from app.models.tenant import Tenant
-from app.schemas.auth import RegisterRequest, OTPVerifyRequest, TokenResponse
-from app.core.config import get_settings
-import jwt
+from app.models.user import User
+from app.schemas.auth import OTPVerifyRequest, RegisterRequest, TokenResponse
 
 router = APIRouter(prefix="/auth", tags=["auth"])
-settings = get_settings()
-
 
 @router.post("/register")
 def register(payload: RegisterRequest, session: Session = Depends(get_session)):
@@ -29,7 +27,8 @@ def register(payload: RegisterRequest, session: Session = Depends(get_session)):
         user = User(
             email=payload.email,
             tenant_id=payload.tenant_id,
-            name=payload.email,
+            name=payload.name or payload.email,
+            role=payload.role,
             otp_code=otp_code,
             otp_expiration=expiration,
         )
@@ -60,11 +59,7 @@ def verify_otp(payload: OTPVerifyRequest, session: Session = Depends(get_session
     if user.otp_expiration < datetime.utcnow():
         raise HTTPException(status_code=401, detail="OTP expired")
 
-    token = jwt.encode(
-        {"user_id": user.id, "tenant_id": user.tenant_id},
-        settings.jwt_secret,
-        algorithm=settings.jwt_algorithm,
-    )
+    token = encode_token({"user_id": user.id, "tenant_id": user.tenant_id, "role": str(user.role)})
 
     user.otp_code = None
     user.otp_expiration = None
